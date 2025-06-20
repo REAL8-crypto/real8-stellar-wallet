@@ -1,25 +1,33 @@
-name: real8_wallet
+name: real8_stellar_wallet
 description: A Stellar wallet for REAL8 token
-publish_to: 'none'
-version: 1.0.0+1
+version: 3.0.1
 environment:
   sdk: '>=3.0.0 <4.0.0'
+
 dependencies:
   flutter:
     sdk: flutter
-  stellar_dart: ^0.8.0
-  flutter_secure_storage: ^9.0.0
+  flutter_localizations:
+    sdk: flutter
+  stellar_wallet_flutter_sdk: ^1.0.3  # Use latest version
+  flutter_secure_storage: ^10.0.0-beta.4
   dio: ^5.0.0
-  flutter_bloc: ^8.0.0
-  intl: ^0.19.0
-  go_router: ^14.0.0
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.0
+  intl: ^0.20.2
+  get_it: ^8.0.3  # For dependency injection
+  json_annotation: ^4.8.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  mockito: ^5.4.0
+  build_runner: ^2.4.0
+  json_serializable: ^6.7.0
+
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/logo.png
-    - assets/images/flag_en.png
-    - assets/images/flag_es.png
+    - assets/images/en_flag.png
+    - assets/images/es_flag.png
+  generate: true
