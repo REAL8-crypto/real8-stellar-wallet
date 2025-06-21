@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../liquidity_pool_bloc.dart';
+import 'liquidity/liquidity_pool_bloc.dart';
 
 class LiquidityPoolScreen extends StatelessWidget {
   @override

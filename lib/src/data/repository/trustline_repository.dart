@@ -1,1 +1,5 @@
-// TODO: Implement feature for REAL8 wallet
+abstract class TrustlineRepository {
+  Future<void> addTrustline(...);
+  Future<void> removeTrustline(...);
+  // etc.
+}

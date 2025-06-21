@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../wallet_bloc.dart';
+import 'wallet/wallet_bloc.dart';
 
 class WalletScreen extends StatelessWidget {
   @override
