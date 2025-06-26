@@ -1,5 +1,4 @@
 name: Flutter CI
-
 on:
   push:
     branches:
@@ -9,50 +8,63 @@ on:
     branches:
       - main
       - develop
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v4
-
+      
       # Set up Java (required for Android builds)
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-
+      
       # Set up Flutter
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0' # Use the latest stable version as of June 2025
+          flutter-version: '3.24.3'
           channel: 'stable'
           cache: true
-
+      
       # Install dependencies
       - name: Install dependencies
         run: flutter pub get
-
+      
+      # Generate code (auto_route, etc.)
+      - name: Generate code
+        run: dart run build_runner build --delete-conflicting-outputs
+      
       # Run code analysis
       - name: Run static analysis
         run: flutter analyze
-
+      
       # Run tests
       - name: Run tests
         run: flutter test
-
+      
       # Build APK for Android
       - name: Build APK
         run: flutter build apk --release
-
+      
+      # Build App Bundle (recommended for Play Store)
+      - name: Build App Bundle
+        run: flutter build appbundle --release
+      
       # Upload APK as artifact
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
+      
+      # Upload App Bundle as artifact
+      - name: Upload App Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-aab
+          path: build/app/outputs/bundle/release/app-release.aab
