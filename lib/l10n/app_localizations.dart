@@ -8,8 +8,6 @@ import 'package:intl/intl.dart' as intl;
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
 
-// ignore_for_file: type=lint
-
 /// Callers can lookup localized strings with an instance of AppLocalizations
 /// returned by `AppLocalizations.of(context)`.
 ///
@@ -29,38 +27,16 @@ import 'app_localizations_es.dart';
 ///
 /// ## Update pubspec.yaml
 ///
-/// Please make sure to update your pubspec.yaml to include the following
-/// packages:
+/// Make sure to add the following to your `pubspec.yaml` file:
 ///
 /// ```yaml
 /// dependencies:
-///   # Internationalization support.
+///   flutter:
+///     sdk: flutter
 ///   flutter_localizations:
 ///     sdk: flutter
-///   intl: any # Use the pinned version from flutter_localizations
-///
-///   # Rest of dependencies
+///   intl: any
 /// ```
-///
-/// ## iOS Applications
-///
-/// iOS applications define key application metadata, including supported
-/// locales, in an Info.plist file that is built into the application bundle.
-/// To configure the locales supported by your app, you’ll need to edit this
-/// file.
-///
-/// First, open your project’s ios/Runner.xcworkspace Xcode workspace file.
-/// Then, in the Project Navigator, open the Info.plist file under the Runner
-/// project’s Runner folder.
-///
-/// Next, select the Information Property List item, select Add Item from the
-/// Editor menu, then select Localizations from the pop-up menu.
-///
-/// Select and expand the newly-created Localizations item then, for each
-/// locale your application supports, add a new item and select the locale
-/// you wish to add from the pop-up menu in the Value field. This list should
-/// be consistent with the languages listed in the AppLocalizations.supportedLocales
-/// property.
 abstract class AppLocalizations {
   AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
@@ -95,6 +71,230 @@ abstract class AppLocalizations {
     Locale('es')
   ];
 
+  /// App title
+  String get appTitle;
+
+  /// Wallet
+  String get wallet;
+
+  /// Trustlines
+  String get trustlines;
+
+  /// Liquidity
+  String get liquidity;
+
+  /// Settings
+  String get settings;
+
+  /// Quick Actions
+  String get quickActions;
+
+  /// Send
+  String get send;
+
+  /// Receive
+  String get receive;
+
+  /// Scan
+  String get scan;
+
+  /// Add Trustline
+  String get addTrustline;
+
+  /// Add Liquidity
+  String get addLiquidity;
+
+  /// History
+  String get history;
+
+  /// Balance
+  String get balance;
+
+  /// Recent Transactions
+  String get recentTransactions;
+
+  /// View All
+  String get viewAll;
+
+  /// No transactions yet
+  String get noTransactionsYet;
+
+  /// Your transactions will appear here
+  String get transactionsWillAppearHere;
+
+  /// Welcome to REAL8
+  String get welcomeToReal8;
+
+  /// Create or import a wallet to get started with REAL8 tokens on the Stellar network
+  String get getStartedDescription;
+
+  /// Create Wallet
+  String get createWallet;
+
+  /// Import Wallet
+  String get importWallet;
+
+  /// Loading wallet...
+  String get loadingWallet;
+
+  /// Refresh
+  String get refresh;
+
+  /// Receive Payment
+  String get receivePayment;
+
+  /// Backup Wallet
+  String get backupWallet;
+
+  /// Export Keys
+  String get exportKeys;
+
+  /// View on Explorer
+  String get viewOnExplorer;
+
+  /// Oops! Something went wrong
+  String get oopsError;
+
+  /// Retry
+  String get retry;
+
+  /// Loading...
+  String get loading;
+
+  /// Load More
+  String get loadMore;
+
+  /// Sent to
+  String get sentTo;
+
+  /// Received from
+  String get receivedFrom;
+
+  /// Trustline Added
+  String get trustlineAdded;
+
+  /// Trustline Removed
+  String get trustlineRemoved;
+
+  /// Liquidity Added
+  String get liquidityAdded;
+
+  /// Liquidity Removed
+  String get liquidityRemoved;
+
+  /// Unknown Address
+  String get unknownAddress;
+
+  /// Copied to clipboard
+  String get copiedToClipboard;
+
+  /// Issuer
+  String get issuer;
+
+  /// Swap
+  String get swap;
+
+  /// Language
+  String get language;
+
+  /// Theme
+  String get theme;
+
+  /// Biometrics
+  String get biometrics;
+
+  /// Security
+  String get security;
+
+  /// Network
+  String get network;
+
+  /// About
+  String get about;
+
+  /// Support
+  String get support;
+
+  /// English
+  String get english;
+
+  /// Español
+  String get spanish;
+
+  /// Light
+  String get light;
+
+  /// Dark
+  String get dark;
+
+  /// System
+  String get system;
+
+  /// Enabled
+  String get enabled;
+
+  /// Disabled
+  String get disabled;
+
+  /// Mainnet
+  String get mainnet;
+
+  /// Testnet
+  String get testnet;
+
+  /// Version
+  String get version;
+
+  /// Contact Support
+  String get contactSupport;
+
+  /// Privacy Policy
+  String get privacyPolicy;
+
+  /// Terms of Service
+  String get termsOfService;
+
+  /// OK
+  String get ok;
+
+  /// Cancel
+  String get cancel;
+
+  /// Confirm
+  String get confirm;
+
+  /// Delete
+  String get delete;
+
+  /// Edit
+  String get edit;
+
+  /// Save
+  String get save;
+
+  /// Close
+  String get close;
+
+  /// Done
+  String get done;
+
+  /// Next
+  String get next;
+
+  /// Previous
+  String get previous;
+
+  /// Skip
+  String get skip;
+
+  /// Continue
+  String get continueAction;
+
+  /// Yes
+  String get yes;
+
+  /// No
+  String get no;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -113,8 +313,6 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en': return AppLocalizationsEn();
@@ -123,8 +321,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+    'an issue with the localizations generation tool. Please file an issue on GitHub with a '
+    'reproducible example app and the exact error message you are seeing here: '
+    'https://github.com/flutter/flutter/issues/new?template=2_bug.md'
   );
 }

@@ -1,62 +1,86 @@
-name: real8_stellar_wallet
-description: A Stellar wallet for REAL8 tokens
+name: real8_wallet
+description: REAL8 Stellar Wallet - A secure multi-platform wallet for REAL8 tokens on the Stellar network
+publish_to: 'none'
+
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
-  flutter: ">=3.0.0"
+  sdk: '>=3.2.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   
-  # UI & Navigation
-  cupertino_icons: ^1.0.6
-  auto_route: ^10.1.0+1
+  # Stellar SDK dependencies - using correct versions
+  stellar_flutter_sdk: ^1.9.0
+  stellar_wallet_flutter_sdk: ^1.0.2
   
-  # State Management
-  flutter_bloc: ^8.1.6
-  bloc: ^8.1.4
-  
-  # Dependency Injection
-  get_it: ^7.7.0
-  
-  # Storage
-  flutter_secure_storage: ^9.2.2
-  
-  # Stellar SDK
-  stellar_flutter_sdk: ^1.8.6
-  
-  # HTTP & Network
-  dio: ^5.4.3+1
-  
-  # Utilities
-  logger: ^2.5.0
+  # UI & State Management
+  flutter_bloc: ^8.1.3
+  equatable: ^2.0.5
+  go_router: ^13.2.0
   
   # Localization
   flutter_localizations:
     sdk: flutter
   intl: any
+  
+  # Storage & Security
+  flutter_secure_storage: ^9.0.0
+  shared_preferences: ^2.2.2
+  
+  # Networking
+  http: ^1.2.0
+  dio: ^5.4.0
+  
+  # Utils
+  logger: ^2.0.2+1
+  crypto: ^3.0.3
+  bip39: ^1.0.6
+  
+  # UI Components
+  cupertino_icons: ^1.0.6
+  flutter_svg: ^2.0.9
+  shimmer: ^3.0.0
+  lottie: ^3.0.0
+  cached_network_image: ^3.3.1
+  
+  # QR Code (just display, not scanning for now)
+  qr_flutter: ^4.1.0
+  
+  # Biometrics
+  local_auth: ^2.1.7
+  
+  # Permissions
+  permission_handler: ^11.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
-  # Code Generation - NEEDED for auto_route v10+
-  auto_route_generator: ^10.1.0+1
-  build_runner: ^2.5.3
-  json_serializable: ^6.8.0
-  
-  # Testing
+  flutter_lints: ^3.0.1
+  build_runner: ^2.4.7
+  json_annotation: ^4.8.1
+  json_serializable: ^6.7.1
+  bloc_test: ^9.1.5
   mockito: ^5.4.4
-  
-  # Linting
-  flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true
   
-  assets:
-    - assets/images/
+  # Removed missing assets temporarily
+  # assets:
+  #   - assets/images/
+  #   - assets/icons/
   
-  generate: true
+  # Removed missing fonts temporarily  
+  # fonts:
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: fonts/Roboto-Regular.ttf
+  #       - asset: fonts/Roboto-Medium.ttf
+  #         weight: 500
+  #       - asset: fonts/Roboto-Bold.ttf
+  #         weight: 700
+
+flutter_intl:
+  enabled: true

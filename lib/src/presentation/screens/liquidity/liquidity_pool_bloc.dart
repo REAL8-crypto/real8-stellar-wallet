@@ -1,21 +1,25 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:real8_stellar_wallet/src/domain/model/liquidity_pool.dart'; // Import the new LiquidityPool model
+
+import '../../../domain/model/liquidity_pool.dart';
+import '../../../data/repository/liquidity_pool_repository.dart';
 
 // --- Events ---
 abstract class LiquidityPoolEvent extends Equatable {
   const LiquidityPoolEvent();
-
+  
   @override
   List<Object> get props => [];
 }
 
-class FetchLiquidityPools extends LiquidityPoolEvent {}
+class LoadLiquidityPools extends LiquidityPoolEvent {}
+
+class RefreshLiquidityPools extends LiquidityPoolEvent {}
 
 // --- States ---
 abstract class LiquidityPoolState extends Equatable {
   const LiquidityPoolState();
-
+  
   @override
   List<Object> get props => [];
 }
@@ -25,43 +29,55 @@ class LiquidityPoolInitial extends LiquidityPoolState {}
 class LiquidityPoolLoading extends LiquidityPoolState {}
 
 class LiquidityPoolLoaded extends LiquidityPoolState {
-  final List<LiquidityPool> pools; // Change to List<LiquidityPool>
-
+  final List<LiquidityPool> pools;
+  
   const LiquidityPoolLoaded(this.pools);
-
+  
   @override
   List<Object> get props => [pools];
 }
 
 class LiquidityPoolError extends LiquidityPoolState {
   final String message;
+  
   const LiquidityPoolError(this.message);
-
+  
   @override
   List<Object> get props => [message];
 }
 
 // --- BLoC ---
 class LiquidityPoolBloc extends Bloc<LiquidityPoolEvent, LiquidityPoolState> {
-  LiquidityPoolBloc() : super(LiquidityPoolInitial()) {
-    on<FetchLiquidityPools>(_onFetchLiquidityPools);
+  final LiquidityPoolRepository liquidityPoolRepository;
+  
+  LiquidityPoolBloc({required this.liquidityPoolRepository}) : super(LiquidityPoolInitial()) {
+    on<LoadLiquidityPools>(_onLoadLiquidityPools);
+    on<RefreshLiquidityPools>(_onRefreshLiquidityPools);
   }
-
-  Future<void> _onFetchLiquidityPools(
-    FetchLiquidityPools event,
+  
+  Future<void> _onLoadLiquidityPools(
+    LoadLiquidityPools event,
     Emitter<LiquidityPoolState> emit,
   ) async {
     emit(LiquidityPoolLoading());
+    
     try {
-      // Simulate fetching liquidity pools
-      await Future.delayed(const Duration(seconds: 1));
-      emit(const LiquidityPoolLoaded([
-        LiquidityPool(id: 'Pool-001', totalShares: '1000'),
-        LiquidityPool(id: 'Pool-002', totalShares: '500'),
-        LiquidityPool(id: 'Pool-003', totalShares: '2000'),
-      ])); // Pass list of LiquidityPool objects
+      final pools = await liquidityPoolRepository.getLiquidityPools();
+      emit(LiquidityPoolLoaded(pools));
     } catch (e) {
-      emit(LiquidityPoolError('Failed to fetch liquidity pools: ${e.toString()}'));
+      emit(LiquidityPoolError('Failed to load liquidity pools: ${e.toString()}'));
+    }
+  }
+  
+  Future<void> _onRefreshLiquidityPools(
+    RefreshLiquidityPools event,
+    Emitter<LiquidityPoolState> emit,
+  ) async {
+    try {
+      final pools = await liquidityPoolRepository.getLiquidityPools();
+      emit(LiquidityPoolLoaded(pools));
+    } catch (e) {
+      emit(LiquidityPoolError('Failed to refresh liquidity pools: ${e.toString()}'));
     }
   }
 }
