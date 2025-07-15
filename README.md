@@ -1,6 +1,8 @@
 # REAL8 Stellar Wallet
 
-A comprehensive, production-ready cryptocurrency wallet for the Stellar network with advanced features, security, and analytics.
+A comprehensive, production-ready cryptocurrency wallet for the Stellar network with advanced features, security, and analytics. 
+
+**Website**: https://real8.org
 
 ## 🌟 Features
 
@@ -56,7 +58,7 @@ A comprehensive, production-ready cryptocurrency wallet for the Stellar network 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-org/real8-stellar-wallet.git
+   git clone https://github.com/REAL8-crypto/real8-stellar-wallet.git
    cd real8-stellar-wallet
    ```
 
@@ -94,7 +96,7 @@ STELLAR_HORIZON_URL=https://horizon.stellar.org
 
 # REAL8 Asset Configuration
 REAL8_ASSET_CODE=REAL8
-REAL8_ASSET_ISSUER=GDUKMGUGDZQK6YHYA5Z6AY2G4XDSZPSZ3SW5UN3ARVMO6QSRDWP5YLEX
+REAL8_ASSET_ISSUER=GBVYYQ7XXRZW6ZCNNCL2X2THNPQ6IM4O47HAA25JTAG7Z3CXJCQ3W4CD
 
 # API Keys (optional)
 COINGECKO_API_KEY=your_coingecko_api_key
